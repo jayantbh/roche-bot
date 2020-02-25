@@ -9,7 +9,7 @@ An experimental Discord bot.
 
 ### Development
 
-`yarn start` in one terminal, and `yarn serve` in another to build and serve the bot.  
+`yarn start` in one terminal, and `yarn watch-serve` in another to build and serve the bot.  
 Keep both running.
 
 ### Deployed Usage
