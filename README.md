@@ -7,6 +7,13 @@ An experimental Discord bot.
 
 `yarn install` first.
 
+Add a `.env` file with the following key-values:
+
+```
+DISCORD_KEY=<bot-token>
+BOT_ID=<bot-client-id>
+```
+
 ### Development
 
 `yarn start` in one terminal, and `yarn watch-serve` in another to build and serve the bot.  
