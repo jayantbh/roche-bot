@@ -1,0 +1,33 @@
+{
+  "name": "vesemir",
+  "version": "1.0.0",
+  "description": "An experimental discord bot.",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsc -w",
+    "build": "tsc -p .",
+    "serve": "node dist/index.js",
+    "watch-serve": "nodemon --watch dist --exec node dist/index.js",
+    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx}\""
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "node",
+    "api"
+  ],
+  "author": "Jayant Bhawal <bhawal.jayant@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^11.5.1",
+    "dotenv": "^8.2.0"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^8.2.0",
+    "@types/node": "^13.7.4",
+    "nodemon": "^1.17.4",
+    "prettier": "^1.19.1",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.7.5"
+  }
+}
