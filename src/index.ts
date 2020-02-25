@@ -2,7 +2,7 @@ process.title = 'Roche Bot';
 import { config } from 'dotenv';
 config();
 
-import { Client } from 'discord.js';
+import { Client, Message } from 'discord.js';
 
 import { handleDebug, handleCommands } from './message-handlers';
 import { PREFIX } from './constants';
@@ -11,7 +11,7 @@ import { getCmdAndPrefix } from './utils';
 const client = new Client();
 const { DISCORD_KEY } = process.env;
 
-function handleMessage(messagePayload: any) {
+async function handleMessage(messagePayload: Message) {
   const { command, messagePrefix } = getCmdAndPrefix(messagePayload);
 
   switch (messagePrefix) {
@@ -22,12 +22,9 @@ function handleMessage(messagePayload: any) {
   }
 }
 
-client.on('message', messagePayload => {
+client.on('message', async (messagePayload: Message) => {
   try {
-    let response = handleMessage(messagePayload);
-
-    // Log outbound response
-    console.log('>>>>>>>>>>', response, !!response);
+    let response = await handleMessage(messagePayload);
     if (response) messagePayload.reply(response);
   } catch (e) {
     console.info('UNHANDLED EXCEPTION.');
