@@ -1,6 +1,9 @@
 import axios, { AxiosError } from 'axios';
 import { RichEmbed } from 'discord.js';
 
+import { colors } from '../constants';
+import { CustomError } from '../errors';
+
 const { WEATHER_API_KEY } = process.env;
 
 type Kelvin = number;
@@ -61,7 +64,7 @@ export default async (query: string) => {
     const weatherDetail = weather.weather[0];
     return new RichEmbed({
       title: weather.name,
-      color: 15119458,
+      color: colors.sepia,
       thumbnail: {
         url: weatherIcon(weatherDetail.icon),
       },
@@ -120,11 +123,9 @@ export default async (query: string) => {
       });
     }
 
-    return new RichEmbed({
-      title: 'Response Error',
-      color: 13632027,
-      description:
-        'The Weather API errored out. Check server logs for details.',
-    });
+    return CustomError(
+      'Response Error',
+      'The Weather API errored out. Check server logs for details.'
+    );
   }
 };

@@ -1,4 +1,5 @@
 import { RichEmbed, User } from 'discord.js';
+import { colors } from '../constants';
 
 const description = `
 This is a random description. 👌
@@ -15,7 +16,7 @@ export default (user: User) =>
   new RichEmbed({
     title: 'Rich Message Preview',
     description,
-    color: 2201300,
+    color: colors.blue,
     author: {
       name: user.username + '#' + user.discriminator,
       icon_url: user.displayAvatarURL,

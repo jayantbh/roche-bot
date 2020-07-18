@@ -4,17 +4,13 @@ import { RichEmbed, Message } from 'discord.js';
 import ping from './handlers/ping';
 import weather from './handlers/weather';
 import richEmbed from './handlers/rich-embed';
+import help from './handlers/help';
+import { commands } from './constants';
+import { CommandError } from './errors';
 
 export function handleDebug(messagePayload: Message) {
   return '```js\n' + inspect(messagePayload, { depth: 1 }) + '\n```';
 }
-
-const commandError = (description: string) =>
-  new RichEmbed({
-    title: 'Command Error',
-    description,
-    color: 13632027,
-  });
 
 export async function handleCommands(message: string, messagePayload: Message) {
   let args = message.split(' ');
@@ -22,17 +18,18 @@ export async function handleCommands(message: string, messagePayload: Message) {
   let params = args.length > 1 ? args.slice(1) : null;
 
   switch (command) {
-    case 'ping':
+    case commands.ping.key:
       return ping(messagePayload);
-    case 're':
+    case commands.re.key:
       return richEmbed(messagePayload.author);
-    case 'weather':
+    case commands.weather.key:
       if (!params?.length)
-        return commandError(
+        return CommandError(
           'Incorrect usage.\nExample: `@Roche weather new delhi`'
         );
       return await weather(params.join(' '));
+    case commands.help.key:
     default:
-      return 'No command supplied.';
+      return help();
   }
 }
